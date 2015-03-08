@@ -1,0 +1,25 @@
+<filter-block>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div show="{isNewFilter == false}">Filter # { opts.i }</div>
+      <div show="{isNewFilter == true}">New filter</div>
+    </div>
+    <div class="panel-body">
+    <p>my panel</p>
+      <filter-condition each={ opts.data.conditions } data={ this }></filter-condition>
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-danger" onclick="{remove}">REMOVE</button>
+    </div>
+  </div>
+
+  <script>
+    this.isNewFilter = (this.opts.isnew == true)
+    console.log('<filter-block>', this.opts, this.isNewFilter)
+    remove(e) {
+      console.log('remove click...')
+      this.opts.remove(opts.i)
+    }
+  </script>
+</filter-block>

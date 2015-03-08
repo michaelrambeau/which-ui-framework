@@ -1,0 +1,10 @@
+<hosting-order-step2>
+  <h2>Step 2</h2>
+  <button onclick={onButtonBack}>BACK</button>
+  <script>
+  onButtonBack(e){
+    this.parent.step = 1;
+    this.parent.update();
+  }
+  </script>
+</hosting-order-step2>

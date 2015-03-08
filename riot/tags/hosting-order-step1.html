@@ -1,0 +1,35 @@
+<hosting-order-step1>
+  <form onsubmit={ onSubmit }>
+    <h2>Step 1</h2>
+    <my-custom-tag></my-custom-tag>
+    <my-custom-form></my-custom-form>
+    <p>Introduction</p>
+    <button type="submit">NEXT</button>
+  </form>
+  <script>
+  onSubmit(e) {
+    this.parent.step = 2
+    this.parent.update();
+    e.preventDefault();
+  }
+  </script>
+</hosting-order-step1>
+
+<my-custom-tag>
+  <h3>Riot.JS Custom tag + jQuery plugin</h3>
+  <p>My paragraph</p>
+  <script>
+    $node = $(this.root);
+    $node.find('p').html('updated by jQuery!');
+    this.on('mount', function() {
+    });
+  </script>
+</my-custom-tag>
+
+    <my-custom-form>
+      <input name="email" type="text">
+      <script>
+        //this.email.value = 'mike@worldcompany.com';the plain JS version
+        //$(this.email).val('mike@worldcompany.com');//the jQuery version
+      </script>
+    </my-custom-form>

@@ -1,0 +1,23 @@
+<filter-list>
+
+  <filter-block
+    each={ filter, i in filters } i={ i }
+    data={ filter }
+    remove = { parent.removeFilter }
+  ></filter-block>
+
+  <button class="btn btn-primary" onclick="{ addButton }">ADD</button>
+
+  <filter-block isnew="{ true }"></filter-block>
+
+  <script>
+    console.log(this.opts);
+    this.filters = this.opts.filters ;
+    addButton(e) {
+      console.log("add!");
+    }
+    removeFilter(i) {
+      console.log("remove", i);
+    }
+  </script>
+</filter-list>
