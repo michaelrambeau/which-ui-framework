@@ -37,7 +37,21 @@ this.data = {
 
 });
 
-riot.tag('forwarding-rules-list', '<h2>Forwarding rules list ({ filterList.filters.length })</h2> <table class="table table-bordered table-striped" show="{ filterList.filters.length > 0 }"> <thead> <tr> <td>#</td> <td>Property</td> <td>Keyword</td> <td>Matching</td> <td>Forwarding email address</td> <td>Actions</td> </tr> </thead> <tbody> <tr each="{ filterList.filters }"> <td>{ number + 1 }</td> <td>  <filter-property ></filter-property> </td> <td> <filter-keyword data="{ keyword }"></filter-keyword> </td> <td> <filter-matching data="{ matching }"></filter-matching> </td> <td> <email-address ></email-address> </td> <td> <div show="{ !editMode }"> <button onclick="{ parent.filterList.editButton }" class="btn btn-primary">EDIT</button> <button onclick="{ parent.filterList.deleteButton }" class="btn btn-danger">DELETE</button> </div> <div show="{ editMode }"> <button onclick="{ parent.filterList.saveButton }" class="btn btn-primary">SAVE</button> <button onclick="{ parent.filterList.cancelButton }" class="btn btn-default">CANCEL</button> </div> </td> </table> <div show="{ filterList.filters.length == 0 }" class="alert alert-warning">No filter.</div>', function(opts) {this.filterList = new app.FilterList(this.opts.data, this);
+riot.tag('forwarding-rules-list', '<h2>Forwarding rules list ({ filterList.filters.length })</h2> <table class="table table-bordered table-striped" show="{ filterList.filters.length > 0 }"> <thead> <tr> <td>#</td> <td>Property</td> <td>Keyword</td> <td>Matching</td> <td>Forwarding email address</td> <td>Actions</td> </tr> </thead> <tbody> <tr each="{ filterList.filters }"> <td>{ number + 1 }</td> <td>  <filter-property item="{ this }" change="{ parent.changeFilterProperty.bind(this) }"></filter-property> </td> <td> <filter-keyword data="{ keyword }"></filter-keyword> </td> <td> <filter-matching data="{ matching }"></filter-matching> </td> <td> <email-address ></email-address> </td> <td> <div show="{ !editMode }"> <button onclick="{ parent.filterList.editButton }" class="btn btn-primary">EDIT</button> <button onclick="{ parent.filterList.deleteButton }" class="btn btn-danger">DELETE</button> </div> <div show="{ editMode }"> <button onclick="{ parent.filterList.saveButton }" class="btn btn-primary">SAVE</button> <button onclick="{ parent.filterList.cancelButton }" class="btn btn-default">CANCEL</button> </div> </td> </table> <div show="{ filterList.filters.length == 0 }" class="alert alert-warning">No filter.</div>', function(opts) {this.filterList = new app.FilterList(this.opts.data, this);
+
+this.changeFilterProperty = (function(_this) {
+  return function(e) {
+    return console.log('changeFilterProperty', _this, $(e.currentTarget));
+  };
+})(this);
+
+riot.observable(this);
+
+this.on('change-property', (function(_this) {
+  return function(data) {
+    return console.info('Event!!!!!', data);
+  };
+})(this));
 
 });
 
@@ -69,11 +83,19 @@ riot.tag('filter-matching', '<div show="{ editMode }"> <select name="filterMatch
 
 });
 
-riot.tag('filter-property', '<div show="{ editMode }"> <select name="filterProperty" class="form-control"> <option>From</option> <option>Subject</option> <option>To</option> </select> </div> <div show="{ !editMode }"> { property } </div>', function(opts) {console.log('<filter-property>', this);
+riot.tag('filter-property', '<div show="{ editMode }"> <select name="filterProperty" class="form-control" onchange="{ change }"> <option>From</option> <option>Subject</option> <option>To</option> </select> </div> <div show="{ !editMode }"> { property } </div>', function(opts) {console.log('<filter-property> item = ', this.opts.item);
 
 this.getValue = (function(_this) {
   return function() {
     return $(_this.filterProperty).val();
+  };
+})(this);
+
+this.change = (function(_this) {
+  return function(e) {
+    return _this.parent.parent.trigger('change-property', {
+      item: _this.opts.item
+    });
   };
 })(this);
 

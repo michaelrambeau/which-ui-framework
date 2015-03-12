@@ -1,2 +1,6 @@
-react
-riot/node_modules
+node_modules
+presentation/lib
+presentation/plugin
+presentation/css
+presentation/js
+

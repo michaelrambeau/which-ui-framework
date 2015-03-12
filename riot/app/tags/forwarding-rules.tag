@@ -17,7 +17,7 @@
         <td>{ number + 1 }</td>
         <td>
 <!--          <my-tag></my-tag>-->
-          <filter-property />
+          <filter-property item="{ this }" change="{ parent.changeFilterProperty.bind(this) }" />
         </td>
         <td>
           <filter-keyword data="{ keyword }" />
@@ -44,5 +44,11 @@
 
   <script type="text/coffeescript">
     @filterList = new app.FilterList @opts.data, this
+
+    @changeFilterProperty = (e) =>
+      console.log 'changeFilterProperty', this, $(e.currentTarget)
+    riot.observable(this)
+    @on 'change-property', (data) =>
+      console.info 'Event!!!!!', data
   </script>
 </forwarding-rules-list>

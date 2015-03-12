@@ -7,6 +7,7 @@ class FilterListBase
       #initialize the editMode property if it does not exit
       for filter, i in @filters
         filter.number = i
+        filter.selectedProperty = filter.property
         editMode = filter.editMode
         filter.editMode = false if not editMode?
         console.log filter
