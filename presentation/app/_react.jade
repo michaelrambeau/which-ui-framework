@@ -1,6 +1,13 @@
 section
   section
     h2 React
+    a(href="http://facebook.github.io/react/") http://facebook.github.io/react/
+    p 17198*
+
+  section
+    h2 Concept
+    p Create re-usable components using JSX (a mix of html and JS, but it is mainly JavaScript, see below)
+    p Reacts promotes "Explicitness and modularity".
 
   section
     h3 Pros
@@ -12,9 +19,14 @@ section
   section
     h3 Cons
     ul
-      li JSX syntax, templates are difficult to read
+      li JSX templates are not very user friendly, a "very JavasScript" approach.
+        ul
+          li No "for each” helper, you do loop calling the map() function on an array
+          li No "show" / "hide" helper
+          li You use "className" instead of “class”
       li Only the View layer
 
   section
     h3 The future
     p The project is growing fast
+    p Several interesting projects use React: <a href="http://reapp.io">reapp.io</a> for example (hybrid app framework)
