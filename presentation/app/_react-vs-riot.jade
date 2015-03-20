@@ -1,0 +1,28 @@
+section
+
+  section
+    h2 React VS. Riot
+
+    p Common points
+    ul
+      li Both use the "component" approach (mark-up and code in the same file).
+      li Both implement a "Virtual DOM" and are fast in the browser.
+      li
+        | Both need a compilation step.
+        | (that can be done in the browser but it is recommended to build files for production)
+        ul
+          li .jsx => .js (React)
+          li .tag => .js (Riot)
+
+  section
+    p React Pros
+    ul
+      li Integration with Rails (gem <a href="https://github.com/reactjs/react-rails">ruby-rails</a>) to compile jsx files
+      li Ecosystem (example of useful projects: React Router, <a href="https://github.com/prometheusresearch/react-forms">React Forms</a>)
+      li Advanced features (mixins)
+
+    p Riot Pros
+    ul
+      li Faster to code, easy to read (templates are plain html, with a few helpers)
+      li Riot library is very light (12 KB on the disk!)
+
