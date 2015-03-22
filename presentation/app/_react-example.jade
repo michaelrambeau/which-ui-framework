@@ -1,0 +1,48 @@
+section
+  section
+    h2 React example
+    p Let's build a mailbox!
+
+  section
+    h3 Application structure
+
+    p 4 React components (= 4 .jsx files)
+
+    .jsx
+      div= '<MyApp>'
+      div(style="padding-left:50px;")= '   <MyTopbar />'
+      div(style="padding-left:50px;")= '   <MyMailbox>'
+      div(style="padding-left:100px;")= '     <MyEmailTable />'
+      div(style="padding-left:50px;")= '    </MyMailbox>'
+      div= '<MyApp />'
+
+  section
+    h3 Stats and props
+    table
+      thead
+        tr
+          th component
+          th state
+          th props
+      tbody
+        tr
+          td= '<MyApp>'
+          td emails<br/>counters
+          td -
+        tr
+          td= '<MyTopbar>'
+          td -
+          td counters
+        tr
+          td= '<MyMailbox>'
+          td -
+          td
+            p emails
+            p.fragment onEmailAction
+        tr
+          td= '<MyEmailTable>'
+          td -
+          td
+            p emails
+            p.fragment onEmailAction
+
